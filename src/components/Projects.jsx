@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
-  { title: 'Project 1', description: 'Thêm sau.', link: '#' },
-  { title: 'Project 2', description: 'Thêm sau.', link: '#' },
-  { title: 'Project 1', description: 'Thêm sau.', link: '#' },
-  { title: 'Project 2', description: 'Thêm sau.', link: '#' },
+  { title: 'Dong Thap Cemetry', description: 'I work as the Front-end leader of this project. This project helps people find the location of the grave.', link: 'https://github.com/VNCemetery' },
+  { title: 'Supporting the creation of a National Defense teaching website', description: 'This website is made for teachers and students to download study materials.', link: 'https://github.com/AndyAnh174/gdqp-reactjs' },
+  { title: 'Manage student expenses', description: 'This website helps students manage their expenses easily.', link: 'https://github.com/Deadline-Student-Manage/Web' },
+  { title: 'FIT kitchen', description: 'This website helps students order food to support the "Spring Volunteer" campaign.', link: 'https://github.com/toantc1024/itute' },
 ];
 
 function Projects() {

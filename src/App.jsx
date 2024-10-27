@@ -1,12 +1,11 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProjectLinux from './pages/ProjectLinux';
 import SecretPage from './pages/SecretPage';
+import Footer from './components/Footer';
 
-// Placeholder components for other projects
 function ProjectFuture() {
   return <div>Project Future Content</div>;
 }
@@ -16,17 +15,6 @@ function AnythinkYouNoMe() {
 }
 
 function App() {
-/*  const navigate = useNavigate();
-
-  const scrollToSection = (sectionId) => {
-    navigate('/'); // Điều hướng về trang chủ
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100); 
-  }; */
 
   return (
     <Router>

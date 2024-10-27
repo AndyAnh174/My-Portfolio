@@ -9,25 +9,23 @@ import Footer from '../components/Footer';
 function Home() {
   return (
     <div>
-      {/* Hero Section */}
       <Hero />
-
+      
       {/* About Section */}
       <section id="about">
         <About />
       </section>
-
+      
       {/* Projects Section */}
       <section id="projects">
         <Projects />
       </section>
-
+      
       {/* Contact Section */}
       <section id="contact">
         <Contact />
       </section>
-
-      {/* Footer Section */}
+      
       <Footer />
     </div>
   );

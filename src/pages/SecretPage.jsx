@@ -1,13 +1,13 @@
-// src/pages/SecretPage.jsx
 import React, { useState } from 'react';
+import avatar from '../assets/avatar.jpg';
 
 function SecretPage() {
   const [showEgg, setShowEgg] = useState(false);
 
   const mentors = [
-    { name: 'Bùi Thanh Liêm', image: 'tamchuaco' },
-    { name: 'Đỗ Thành Đạt', image: 'tamchuaco' },
-    { name: 'Trần Công Toản', image: 'tamchuaco' },
+    { name: 'Bùi Thanh Liêm', image: avatar },
+    { name: 'Đỗ Thành Đạt', image: avatar },
+    { name: 'Trần Công Toản', image: avatar },
   ];
 
   return (
@@ -15,7 +15,7 @@ function SecretPage() {
       <h1 className="text-4xl font-bold mb-8 text-[#593E67]">Một số bí mật về tui</h1>
 
       {/* Crush Section */}
-      <div>
+      <div className="mb-40"> {/* Thêm khoảng cách dưới phần này */}
         <button
           onClick={() => setShowEgg(!showEgg)}
           className="text-white bg-[#DE741C] py-2 px-4 rounded-lg hover:bg-[#FEA837] transition"
@@ -23,7 +23,7 @@ function SecretPage() {
           Xem bí mật về crush của tôi
         </button>
         {showEgg && (
-          <p className="mt-4 text-xl text-[#84495F]">[Bí Mật hihi]</p> //Nguyễn Thị Hồng Nhung
+          <p className="mt-4 text-xl text-[#84495F]">Bí mật hihi</p> //Nguyễn Thị Hồng Nhung
         )}
       </div>
 
@@ -34,11 +34,14 @@ function SecretPage() {
           {mentors.map((mentor, index) => (
             <div key={index} className="relative group p-6 bg-[#B85B56] rounded-lg shadow-md">
               <h3 className="text-xl font-medium text-white">{mentor.name}</h3>
-              <img
-                src={mentor.image}
-                alt={mentor.name}
-                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-              />
+              {/* Hover Image */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <img
+                  src={mentor.image}
+                  alt={mentor.name}
+                  className="w-48 h-48 rounded-lg shadow-lg object-cover"
+                />
+              </div>
             </div>
           ))}
         </div>

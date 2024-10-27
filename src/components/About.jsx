@@ -1,4 +1,3 @@
-// src/components/About.jsx
 import React from 'react';
 import about from '../assets/about.jpg';
 

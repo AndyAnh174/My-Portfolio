@@ -1,10 +1,8 @@
-// src/components/Navbar.jsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import avatar from '../assets/avatar.jpg';
 
 function Navbar({ scrollToSection }) {
@@ -21,24 +19,26 @@ function Navbar({ scrollToSection }) {
                 className="fixed w-full bg-[#593E67] text-white py-4 shadow-md z-10"
             >
                 <div className="container mx-auto flex justify-between items-center px-6">
-                    <Link to="/" className="text-2xl font-bold">
+                    <a href="/" className="text-2xl font-bold">
                         My Portfolio
-                    </Link>
+                    </a>
                     <ul className="flex space-x-4">
                         <li>
-                            <button onClick={() => scrollToSection('about')} className="hover:text-gray-200">
+                            <a href="#about" className="hover:text-gray-200">
                                 About
-                            </button>
+                            </a>
                         </li>
                         <li>
-                            <button onClick={() => scrollToSection('projects')} className="hover:text-gray-200">
+                            <a href="#projects" className="hover:text-gray-200">
                                 Projects
-                            </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" className="hover:text-gray-200">
+                                Contact
+                            </a>
                         </li>
                         <li className="flex items-center space-x-2">
-                            <button onClick={() => scrollToSection('contact')} className="hover:text-gray-200">
-                                Contact
-                            </button>
                             <span
                                 className="cursor-pointer text-xxl"
                                 onClick={togglePanel}
@@ -52,6 +52,7 @@ function Navbar({ scrollToSection }) {
 
             {isOpen && (
                 <>
+                    {/* Overlay để đóng sidebar khi nhấn bên ngoài */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
@@ -60,6 +61,7 @@ function Navbar({ scrollToSection }) {
                         onClick={togglePanel}
                     />
 
+                    {/* Sidebar Menu */}
                     <motion.div
                         initial={{ x: -300 }}
                         animate={{ x: 0 }}
@@ -79,13 +81,16 @@ function Navbar({ scrollToSection }) {
                                 </div>
 
                                 {/* Personal Info */}
-                                <h2 className="text-xl font-semibold text-white mb-1">Hồ Việt Anh(AndyAnh)</h2>
-                                <p className="text-[#FEA837]"> 
-                                    <FontAwesomeIcon icon={faPhone} /> 0949000030</p>
+                                <h2 className="text-xl font-semibold text-white mb-1">Hồ Việt Anh (AndyAnh)</h2>
                                 <p className="text-[#FEA837]">
-                                    <FontAwesomeIcon icon={faPhone} /> 0915223292</p>
+                                    <FontAwesomeIcon icon={faPhone} /> 0949000030
+                                </p>
+                                <p className="text-[#FEA837]">
+                                    <FontAwesomeIcon icon={faPhone} /> 0915223292
+                                </p>
                                 <p className="text-[#FEA837] mb-6">
-                                    <FontAwesomeIcon icon={faEnvelope} /> hovietanh147@gmail.com</p>
+                                    <FontAwesomeIcon icon={faEnvelope} /> hovietanh147@gmail.com
+                                </p>
 
                                 {/* Links to Other Projects */}
                                 <div className="space-y-3">
@@ -98,6 +103,7 @@ function Navbar({ scrollToSection }) {
                             </div>
                         </div>
 
+                        {/* Footer - Copyright */}
                         <div className="text-center mt-6">
                             <hr className="border-t border-gray-200 my-4" />
                             <a

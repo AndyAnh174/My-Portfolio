@@ -1,5 +1,5 @@
-// src/pages/ProjectLinux.jsx
 import React from 'react';
+import Footer from '../components/Footer';
 
 function ProjectLinux() {
   return (
@@ -43,6 +43,8 @@ function ProjectLinux() {
         </ul>
       </section>
     </div>
+    
+    
   );
 }
 
