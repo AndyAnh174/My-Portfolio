@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import GamePage from './pages/GamePage';
 import SecretPage from './pages/SecretPage';
 import ProjectLinux from './pages/ProjectLinux';
-
+import Footer from './components/Footer';
 function App() {
   return (
     <Router>

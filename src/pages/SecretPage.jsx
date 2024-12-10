@@ -353,8 +353,8 @@ function SecretPage() {
                             transition={{ delay: 0.5 }}
                             className="text-center mt-12 text-white/80 italic"
                         >
-                            "Code is like humor. When you have to explain it, it's bad." 
-                            <span className="block mt-2 text-sm">- Cory House</span>
+                            "Intelligence is the ability to avoid doing work, yet getting the work done." 
+                            <span className="block mt-2 text-sm">- Linus Torvalds</span>
                         </motion.div>
                     </motion.div>
                 )}
