@@ -1,36 +1,222 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
-  { title: 'Dong Thap Cemetry', description: 'I work as the Front-end leader of this project. This project helps people find the location of the grave.', link: 'https://github.com/VNCemetery' },
-  { title: 'Supporting the creation of a National Defense teaching website', description: 'This website is made for teachers and students to download study materials.', link: 'https://github.com/AndyAnh174/gdqp-reactjs' },
-  { title: 'Manage student expenses', description: 'This website helps students manage their expenses easily.', link: 'https://github.com/Deadline-Student-Manage/Web' },
-  { title: 'FIT kitchen', description: 'This website helps students order food to support the "Spring Volunteer" campaign.', link: 'https://github.com/toantc1024/itute' },
+  { 
+    title: '   Thap Cemetery',
+    description: 'I work as the Front-end leader of this project. This project helps people find the location of the grave.',
+    link: 'https://github.com/VNCemetery',
+    tech: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    image: 'https://tuoitudong.vn/wp-content/uploads/2016/10/Ngh%C4%A9a-Trang-Li%E1%BB%87t-S%E1%BB%B9-%C4%90%E1%BB%93ng-Th%C3%A1p-1-1.jpg', 
+    cardColor: 'from-[#FEA837] to-[#DE741C]',
+    titleColor: 'text-white',
+    descColor: 'text-white/90',
+    techBadgeColor: 'bg-white/20 text-white'
+  },
+  { 
+    title: 'National Defense Teaching Website',
+    description: 'This website is made for teachers and students to download study materials.',
+    link: 'https://github.com/AndyAnh174/gdqp-reactjs',
+    tech: ['React', 'Firebase', 'Material-UI'],
+    image: 'https://placehold.co/600x400/png',
+    role: 'Full Stack Developer',
+    cardColor: 'from-[#DE741C] to-[#B85B56]',
+    titleColor: 'text-white',
+    descColor: 'text-white/90',
+    techBadgeColor: 'bg-white/20 text-white'
+  },
+  { 
+    title: 'Student Expense Manager',
+    description: 'This website helps students manage their expenses easily.',
+    link: 'https://github.com/Deadline-Student-Manage/Web',
+    tech: ['Vue.js', 'Express', 'MySQL'],
+    image: 'https://placehold.co/600x400/png',
+    role: 'Backend Developer',
+    cardColor: 'from-[#84495F] to-[#593E67]',
+    titleColor: 'text-white',
+    descColor: 'text-white/90',
+    techBadgeColor: 'bg-white/20 text-white'
+  },
+  { 
+    title: 'FIT Kitchen',
+    description: 'This website helps students order food to support the "Spring Volunteer" campaign.',
+    link: 'https://github.com/toantc1024/itute',
+    tech: ['Next.js', 'Prisma', 'PostgreSQL'],
+    image: 'https://placehold.co/600x400/png',
+    role: 'Frontend Developer',
+    cardColor: 'from-[#593E67] to-[#84495F]',
+    titleColor: 'text-white',
+    descColor: 'text-white/90',
+    techBadgeColor: 'bg-white/20 text-white'
+  }
 ];
 
 function Projects() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleProjectClick = (link) => {
+    window.open(link, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <section id="projects" className="py-16 bg-[#FEA837] text-white">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4 text-[#593E67]">Projects</h2>
+    <section id="projects" className="relative py-20 pt-24 bg-gradient-to-b from-[#FEA837] to-[#DE741C] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#593E67] opacity-10 pattern-grid-lg" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full filter blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.h2 
+            className="text-5xl md:text-6xl font-extrabold text-white mb-6 font-[Poppins] tracking-tight"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            My Projects
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-white font-medium max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            A collection of my recent work and contributions to various projects.
+          </motion.p>
+
+          {/* Decorative underline */}
+          <motion.div
+            className="w-24 h-1 bg-white mx-auto mt-6 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#DE741C] p-6 rounded-lg shadow-md text-left"
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              onClick={() => setSelectedProject(selectedProject === index ? null : index)}
+              className="relative group cursor-pointer"
+              tabIndex={0}
+              role="button"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setSelectedProject(selectedProject === index ? null : index);
+                }
+              }}
             >
-              <h3 className="text-2xl font-semibold mb-2 text-[#FEA837]">{project.title}</h3>
-              <p className="text-lg mb-4 text-white">{project.description}</p>
-              <a
-                href={project.link}
-                className="text-[#B85B56] font-medium hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.div
+                className={`relative bg-gradient-to-br ${project.cardColor} rounded-2xl overflow-hidden shadow-xl`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  transformStyle: "preserve-3d",
+                  perspective: 1000,
+                }}
               >
-                View Project
-              </a>
+                {/* Project Image */}
+                <div className="relative h-48">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  
+                  {/* Role Badge */}
+                  <motion.div
+                    className={`absolute top-4 right-4 px-3 py-1 ${project.techBadgeColor} rounded-full text-sm font-medium backdrop-blur-sm`}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {project.role}
+                  </motion.div>
+                </div>
+
+                {/* Project Info */}
+                <div className="p-6">
+                  <h3 className={`text-xl font-bold ${project.titleColor} mb-3 font-[Poppins] tracking-wide`}>
+                    {project.title}
+                  </h3>
+                  <p className={`${project.descColor} mb-4 font-light leading-relaxed`}>
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech) => (
+                      <motion.span
+                        key={tech}
+                        className={`px-3 py-1 ${project.techBadgeColor} rounded-full text-xs font-medium
+                          hover:opacity-80 transition-opacity`}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  {/* Project Link */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProjectClick(project.link);
+                    }}
+                    className="group"
+                  >
+                    <span className={`px-4 py-2 ${project.titleColor} border border-current rounded-lg 
+                      font-medium inline-block hover:bg-current hover:text-black transition-colors`}>
+                      View Project
+                    </span>
+                  </motion.button>
+                </div>
+
+                {/* Expanded Content when Selected */}
+                {selectedProject === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="px-6 pb-6 border-t border-white/10"
+                  >
+                    <div className="pt-4">
+                      <h4 className="text-white font-medium mb-2">Project Details</h4>
+                      <ul className="text-white/80 space-y-2 select-text">
+                        <li>• Role: {project.role}</li>
+                        <li>• Technologies: {project.tech.join(', ')}</li>
+                        <li>• Repository: <a 
+                            href={project.link}
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-[#FEA837] hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            GitHub
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
             </motion.div>
           ))}
         </div>
