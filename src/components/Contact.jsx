@@ -109,7 +109,7 @@ function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold text-white mb-6">Get in Touch</h2>
+          <h2 className="text-5xl font-bold text-white mb-6">Contact</h2>
           <div className="w-24 h-1 bg-[#FEA837] mx-auto rounded-full" />
         </motion.div>
 

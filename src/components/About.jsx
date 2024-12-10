@@ -32,7 +32,7 @@ function About() {
                                 <img
                                     src={about}
                                     alt="About Me"
-                                    className="w-full h-[400px] object-cover"
+                                    className="w-full h-[600px] object-contain"
                                 />
                                 {/* Overlay with text */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -41,7 +41,9 @@ function About() {
                             </motion.div>
                             
                             {/* Decorative Elements */}
-                            <div className="absolute -inset-4 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-2xl opacity-50 group-hover:opacity-70 blur transition-opacity" />
+                            <div 
+                                className="absolute -inset-2 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-2xl opacity-50 group-hover:opacity-70 blur transition-opacity w-full"
+                            />
                         </div>
                     </motion.div>
 

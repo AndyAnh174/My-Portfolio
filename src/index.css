@@ -52,3 +52,241 @@
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
 }
+
+.cv-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+  max-width: 80%;
+  padding: 2rem;
+  background-color: white;
+  min-height: 100vh;
+  perspective: 2000px;
+}
+
+.custom-link {
+  text-decoration: none;
+  color: black;
+  border: 2px solid cyan;
+  padding: 2px 5px;
+  display: inline-block;
+}
+
+.Header {
+  text-align: center;
+}
+
+.picture {
+  width: 9%;
+  height: auto;
+  float: left;
+}
+
+.Main {
+  line-height: 1.1;
+}
+
+.Title {
+  text-align: center;
+}
+
+.Content-Text {
+  font-weight: bold;
+}
+
+.custom-awards-boots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom-awards {
+  padding: 2px 5px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.style-type-boots {
+  display: inline-block;
+  width: 70%;
+  vertical-align: top;
+}
+
+.style-type {
+  display: inline-block;
+  width: 28%;
+  text-align: right;
+  vertical-align: top;
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .cv-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .picture {
+    width: 20%;
+    float: none;
+    margin: 0 auto 20px auto;
+    display: block;
+  }
+}
+
+.cv-page {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+@keyframes pageFlip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+.flipping {
+  animation: pageFlip 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .cv-container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+}
+
+.book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  perspective: 2000px;
+  background: transparent !important;
+}
+
+.page {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.page-no-border {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.cover-page {
+  background: linear-gradient(45deg, #593E67, #84495F);
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Ẩn các controls mặc định của PDF viewer */
+iframe {
+  background: transparent !important;
+}
+
+@media (max-width: 768px) {
+  .book-container {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .book-container {
+    transform: scale(0.6);
+  }
+}
+
+/* Thêm vào phần PDF styles */
+.pdf-document {
+  background: transparent !important;
+}
+
+.pdf-page {
+  background: transparent !important;
+}
+
+.pdf-page > canvas {
+  background: white !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ẩn loading mặc định của react-pdf */
+.react-pdf__Document {
+  background: transparent !important;
+}
+
+.react-pdf__Page {
+  background: transparent !important;
+}
+
+.prose {
+  color: white !important;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: white !important;
+}
+
+.prose p,
+.prose ul,
+.prose li {
+  color: #D1D5DB !important; /* gray-300 */
+}
+
+.prose strong {
+  color: white !important;
+}
+
+/* Loading animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better responsive design */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Improved animations */
+.page-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

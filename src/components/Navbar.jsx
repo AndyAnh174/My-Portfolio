@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faHome, faUser, faCode, faGamepad, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faHome, faUser, faCode, faGamepad, faBars, faTimes, faFile, faPen, faTrophy, faTerminal, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import avatar from '../assets/avatar.jpg';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 
@@ -37,8 +37,13 @@ function Navbar() {
 
     const sidebarLinks = [
         { name: 'Project Linux', to: '/project-linux', icon: faCode, color: 'from-[#DE741C] to-[#FEA837]' },
+        { name: 'Blog', to: '/blog', icon: faPen, color: 'from-[#84495F] to-[#B85B56]' },
+        { name: 'Achievements', to: '/achievements', icon: faTrophy, color: 'from-[#593E67] to-[#84495F]' },
+        { name: 'Linux Tutorials', to: '/linux-tutorials', icon: faTerminal, color: 'from-[#4A90E2] to-[#357ABD]' },
+        { name: 'Tech Stack', to: '/tech-stack', icon: faLayerGroup, color: 'from-[#DE741C] to-[#FEA837]' },
         { name: 'Mini Games', to: '/games', icon: faGamepad, color: 'from-[#84495F] to-[#B85B56]' },
-        { name: 'Secret Page', to: '/secret', icon: faUser, color: 'from-[#593E67] to-[#84495F]' }
+        { name: 'Secret Page', to: '/secret', icon: faUser, color: 'from-[#593E67] to-[#84495F]' },
+        { name: 'CV', to: '/cv', icon: faFile, color: 'from-[#4A90E2] to-[#357ABD]' }
     ];
 
     return (
