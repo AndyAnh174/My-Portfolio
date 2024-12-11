@@ -41,7 +41,7 @@ function ShareButtons({ title, url }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-8 right-8 flex flex-col gap-3 z-[9999]"
+      className="fixed bottom-8 right-8 flex flex-col gap-3 z-[30]"
     >
       {shareLinks.map((link, index) => (
         <motion.a

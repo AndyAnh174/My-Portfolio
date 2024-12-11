@@ -133,7 +133,7 @@ function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'tween', duration: 0.3 }}
-                            className="fixed right-0 top-0 h-full w-80 bg-gradient-to-b from-[#593E67] to-[#84495F] shadow-2xl z-50"
+                            className="fixed right-0 top-0 h-full w-80 bg-gradient-to-b from-[#593E67] to-[#84495F] shadow-2xl z-50 overflow-y-auto custom-scrollbar"
                         >
                             <div className="p-6 h-full flex flex-col">
                                 {/* Close Button */}
@@ -169,32 +169,34 @@ function Navbar() {
                                     </div>
                                 </div>
 
-                                {/* Navigation Links */}
-                                <div className="space-y-4">
-                                    {sidebarLinks.map((link) => (
-                                        <motion.div
-                                            key={link.to}
-                                            whileHover={{ x: 10 }}
-                                            className="relative group"
-                                        >
-                                            <Link
-                                                to={link.to}
-                                                onClick={togglePanel}
-                                                className={`block p-4 rounded-lg bg-gradient-to-r ${link.color} 
-                                                    text-white font-medium transition-transform transform
-                                                    hover:shadow-lg`}
+                                {/* Navigation Links - Thêm container có thể cuộn */}
+                                <div className="flex-1 overflow-y-auto custom-scrollbar">
+                                    <div className="space-y-4">
+                                        {sidebarLinks.map((link) => (
+                                            <motion.div
+                                                key={link.to}
+                                                whileHover={{ x: 10 }}
+                                                className="relative group"
                                             >
-                                                <div className="flex items-center space-x-3">
-                                                    <FontAwesomeIcon icon={link.icon} />
-                                                    <span>{link.name}</span>
-                                                </div>
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                                <Link
+                                                    to={link.to}
+                                                    onClick={togglePanel}
+                                                    className={`block p-4 rounded-lg bg-gradient-to-r ${link.color} 
+                                                        text-white font-medium transition-transform transform
+                                                        hover:shadow-lg`}
+                                                >
+                                                    <div className="flex items-center space-x-3">
+                                                        <FontAwesomeIcon icon={link.icon} />
+                                                        <span>{link.name}</span>
+                                                    </div>
+                                                </Link>
+                                            </motion.div>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 {/* Footer */}
-                                <div className="mt-auto text-center">
+                                <div className="mt-4 text-center">
                                     <a
                                         href="https://andyanh-contact.vercel.app/"
                                         target="_blank"
