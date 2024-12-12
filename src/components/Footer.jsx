@@ -10,8 +10,8 @@ function Footer() {
   const socialLinks = [
     { icon: faGithub, url: "https://github.com/AndyAnh174", label: "GitHub" },
     { icon: faLinkedin, url: "https://www.linkedin.com/in/việt-anh-hồ-b61489245/", label: "LinkedIn" },
-    { icon: faFacebook, url: "#", label: "Facebook" },
-    { icon: faTwitter, url: "#", label: "Twitter" }
+    { icon: faFacebook, url: "https://www.facebook.com/andy.anh17405", label: "Facebook" },
+    { icon: faTwitter, url: "https://x.com/VietHo41299", label: "Twitter" }
   ];
 
   const quickLinks = [

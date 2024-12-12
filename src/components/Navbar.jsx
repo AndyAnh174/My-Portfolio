@@ -163,6 +163,10 @@ function Navbar() {
                                             0949000030
                                         </p>
                                         <p className="flex items-center justify-center">
+                                            <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                                            0915223292
+                                        </p>
+                                        <p className="flex items-center justify-center">
                                             <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                                             hovietanh147@gmail.com
                                         </p>

@@ -44,7 +44,7 @@ function SecretPage() {
         { 
             name: 'Bùi Thanh Liêm',
             image: avatar,
-            role: 'Senior Developer',
+            role: 'Teacher',
             description: 'Người thầy đầu tiên hướng dẫn tôi về con đường lập trình',
             skills: ['Frontend', 'Backend', 'System Design']
         },
@@ -53,7 +53,7 @@ function SecretPage() {
             image: avatar,
             role: 'Technical Lead',
             description: 'Người anh dạy tôi nhiều về kiến trúc và clean code',
-            skills: ['Architecture', 'DevOps', 'Mentoring']
+            skills: ['Architecture', 'Mentoring']
         },
         { 
             name: 'Trần Công Toản',
@@ -93,11 +93,11 @@ function SecretPage() {
     ];
 
     const tabs = [
-        { id: 'personality', label: 'Tính Cách', icon: faHeart },
-        { id: 'hobbies', label: 'Sở Thích', icon: faGamepad },
+        { id: 'personality', label: 'Personality', icon: faHeart },
+        { id: 'hobbies', label: 'Hobbies', icon: faGamepad },
         { id: 'funfacts', label: 'Fun Facts', icon: faMoon },
-        { id: 'mentors', label: 'Sư Phụ', icon: faUserTie },
-        { id: 'quotes', label: 'Linux Quotes', icon: faQuoteLeft }
+        { id: 'mentors', label: 'Mentors', icon: faUserTie },
+        { id: 'quotes', label: 'Quotes', icon: faQuoteLeft }
     ];
 
     return (

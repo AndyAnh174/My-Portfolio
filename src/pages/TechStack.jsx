@@ -15,7 +15,7 @@ function TechStack() {
       category: "Backend",
       tools: [
         { name: "Node.js", level: "Intermediate", icon: "nodejs-icon.svg" },
-        { name: "Python", level: "Intermediate", icon: "python-icon.svg" }
+        { name: "Flask", level: "Intermediate", icon: "python-icon.svg" }
       ]
     },
     {
