@@ -30,7 +30,7 @@ function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen pt-20 flex flex-col justify-center items-center bg-gradient-to-b from-[#593E67] to-[#84495F] overflow-hidden">
+    <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#593E67] to-[#84495F] shadow-lg border border-white/10">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-8">
         {[...Array(64)].map((_, i) => (
@@ -70,15 +70,17 @@ function Hero() {
               {/* Profile Image with Glow */}
               <motion.div
                 className="relative w-40 h-40 mx-auto mb-8"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-full blur-lg opacity-70" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-full blur-lg opacity-30" />
                 <img
                   src={avatar}
                   alt="Profile"
-                  className="relative w-full h-full rounded-full object-cover border-4 border-white/30"
+                  className="relative w-full h-full rounded-full object-cover border-4 border-white/20"
                 />
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-full blur animate-pulse opacity-30" />
+                <div 
+                  className="absolute -inset-1 bg-gradient-to-r from-[#FEA837]/40 to-[#DE741C]/40 rounded-full blur animate-[pulse_3s_ease-in-out_infinite] opacity-20" 
+                />
               </motion.div>
 
               {/* Text Content */}
@@ -140,18 +142,6 @@ function Hero() {
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-lg blur opacity-70 group-hover:opacity-100 transition duration-200" />
                     <button className="relative px-8 py-3 bg-[#DE741C] text-white rounded-lg font-medium">
                       View Projects
-                    </button>
-                  </motion.a>
-
-                  <motion.a
-                    href="#contact"
-                    className="relative group"
-                    whileHover={{ scale: 1.05 }}
-                    style={{ transform: "translateZ(75px)" }}
-                  >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-70 group-hover:opacity-100 transition duration-200" />
-                    <button className="relative px-8 py-3 bg-white/10 backdrop-blur-sm text-white rounded-lg font-medium">
-                      Contact Me
                     </button>
                   </motion.a>
                 </motion.div>

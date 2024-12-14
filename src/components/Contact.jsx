@@ -93,7 +93,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20 bg-gradient-to-b from-[#593E67] to-[#84495F] overflow-hidden">
+    <section id="contact" className="relative py-20 bg-gradient-to-b from-[#DE741C] to-[#B85B56] overflow-hidden shadow-lg border border-white/10">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-black opacity-10 pattern-grid-lg" />
@@ -162,7 +162,8 @@ function Contact() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-lg"
+            className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20"
+            whileHover={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>

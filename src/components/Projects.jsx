@@ -60,7 +60,7 @@ function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-20 pt-24 bg-gradient-to-b from-[#FEA837] to-[#DE741C] overflow-hidden">
+    <section id="projects" className="relative py-20 pt-24 bg-gradient-to-b from-[#FEA837] to-[#DE741C] overflow-hidden shadow-lg border border-white/10">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#593E67] opacity-10 pattern-grid-lg" />
@@ -76,7 +76,7 @@ function Projects() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-extrabold text-white mb-6 font-[Poppins] tracking-tight"
+            className="text-5xl font-bold text-white mb-6 font-[Poppins] tracking-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -85,7 +85,7 @@ function Projects() {
           </motion.h2>
           
           <motion.p 
-            className="text-xl md:text-2xl text-white font-medium max-w-2xl mx-auto"
+            className="text-lg text-white/90 font-[Poppins] max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -123,8 +123,8 @@ function Projects() {
               }}
             >
               <motion.div
-                className={`relative bg-gradient-to-br ${project.cardColor} rounded-2xl overflow-hidden shadow-xl`}
-                whileHover={{ scale: 1.02 }}
+                className={`relative bg-gradient-to-br ${project.cardColor} rounded-2xl overflow-hidden shadow-2xl border border-white/20`}
+                whileHover={{ scale: 1.02, shadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
                 whileTap={{ scale: 0.98 }}
                 style={{
                   transformStyle: "preserve-3d",
@@ -153,10 +153,10 @@ function Projects() {
 
                 {/* Project Info */}
                 <div className="p-6">
-                  <h3 className={`text-xl font-bold ${project.titleColor} mb-3 font-[Poppins] tracking-wide`}>
+                  <h3 className={`text-xl font-[Poppins] font-bold ${project.titleColor} mb-3 tracking-wide`}>
                     {project.title}
                   </h3>
-                  <p className={`${project.descColor} mb-4 font-light leading-relaxed`}>
+                  <p className={`${project.descColor} font-[Poppins] text-base mb-4 leading-relaxed`}>
                     {project.description}
                   </p>
 
@@ -165,7 +165,7 @@ function Projects() {
                     {project.tech.map((tech) => (
                       <motion.span
                         key={tech}
-                        className={`px-3 py-1 ${project.techBadgeColor} rounded-full text-xs font-medium
+                        className={`px-3 py-1 ${project.techBadgeColor} rounded-full text-sm font-[Poppins]
                           hover:opacity-80 transition-opacity`}
                         whileHover={{ scale: 1.05 }}
                       >
@@ -183,7 +183,7 @@ function Projects() {
                     className="group"
                   >
                     <span className={`px-4 py-2 ${project.titleColor} border border-current rounded-lg 
-                      font-medium inline-block hover:bg-current hover:text-black transition-colors`}>
+                      font-[Poppins] text-sm inline-block hover:bg-current hover:text-black transition-colors`}>
                       View Project
                     </span>
                   </motion.button>
@@ -198,8 +198,8 @@ function Projects() {
                     className="px-6 pb-6 border-t border-white/10"
                   >
                     <div className="pt-4">
-                      <h4 className="text-white font-medium mb-2">Project Details</h4>
-                      <ul className="text-white/80 space-y-2 select-text">
+                      <h4 className="text-white font-[Poppins] font-medium text-lg mb-2">Project Details</h4>
+                      <ul className="text-white/80 space-y-2 select-text font-[Poppins] text-base">
                         <li>• Role: {project.role}</li>
                         <li>• Technologies: {project.tech.join(', ')}</li>
                         <li>• Repository: <a 

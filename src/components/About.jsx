@@ -6,7 +6,7 @@ function About() {
     const [isFullscreen, setIsFullscreen] = useState(false);
 
     return (
-        <section id="about" className="relative py-20 pt-24 bg-gradient-to-b from-[#B85B56] to-[#84495F] text-white overflow-hidden">
+        <section id="about" className="relative py-20 bg-gradient-to-b from-[#84495F] to-[#593E67] overflow-hidden shadow-lg border border-white/10 text-white overflow-hidden">
             {/* Background Patterns */}
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-[#FEA837] rounded-full filter blur-3xl" />
@@ -61,31 +61,36 @@ function About() {
                             </h2>
                         </div>
 
-                        {/* Skills Grid */}
+                        {/* Skills List */}
                         <div className="grid grid-cols-2 gap-4 mb-6">
                             {[
-                                { title: 'Linux System', level: '90%' },
-                                { title: 'Frontend Dev', level: '80%' },
-                                { title: 'UI/UX Design', level: '45%' },
-                                { title: 'Open Source', level: '70%' }
-                            ].map((skill, index) => (
+                                {
+                                    title: 'Technical Skills',
+                                    skills: ['Linux System', 'Frontend Development', 'UI/UX Design', 'Open Source']
+                                },
+                                {
+                                    title: 'Development',
+                                    skills: ['React', 'TailwindCSS', 'Node.js', 'Git']
+                                }
+                            ].map((category, index) => (
                                 <motion.div
-                                    key={skill.title}
+                                    key={category.title}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
                                     className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
                                 >
-                                    <div className="text-sm font-medium mb-2">{skill.title}</div>
-                                    <div className="h-2 bg-white/20 rounded-full">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: skill.level }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                                            className="h-full bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-full"
-                                        />
+                                    <h3 className="text-lg font-medium text-white mb-3">{category.title}</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {category.skills.map((skill) => (
+                                            <span
+                                                key={skill}
+                                                className="px-3 py-1 bg-white/10 rounded-full text-sm text-white hover:bg-white/20 transition-colors"
+                                            >
+                                                {skill}
+                                            </span>
+                                        ))}
                                     </div>
                                 </motion.div>
                             ))}
