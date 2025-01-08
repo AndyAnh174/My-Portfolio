@@ -27,35 +27,83 @@ export const useLanguage = () => {
 // Translations
 export const translations = {
   en: {
-    // Navbar
+    // Navigation
     about: 'About',
     projects: 'Projects',
     contact: 'Contact',
     games: 'Games',
     blog: 'Blog',
     achievements: 'Achievements',
-    tutorials: 'Linux Tutorials',
+    tutorials: 'Tutorials',
     techStack: 'Tech Stack',
     secretPage: 'Secret Page',
     cv: 'CV',
 
     // Hero
     greeting: 'Hi, I\'m',
+    fullName: 'Andy Anh',
     roles: {
-      linux: 'Linux Enthusiast',
+      linux: 'Linux Expert',
       frontend: 'Frontend Developer',
       opensource: 'Open Source Contributor'
     },
-    description: 'Linux enthusiast and freelance front-end developer, focused on crafting user-centered web solutions and driven by a passion for open-source development.',
+    description: 'A Linux expert and freelance frontend developer focused on creating user-centric web solutions and passionate about open source development.',
     viewProjects: 'View Projects',
 
     // About
     aboutMe: 'About Me',
-    aboutDescription: 'I\'m a passionate full-stack developer with a strong focus on creating beautiful and functional web applications. With expertise in both frontend and backend technologies, I strive to deliver high-quality solutions that make a difference.',
+    aboutDescription: 'I am a passionate full-stack developer focused on creating beautiful and functional web applications. With expertise in both frontend and backend technologies, I strive to deliver high-quality solutions that make a difference.',
     skills: 'Skills',
     education: 'Education',
     experience: 'Experience',
     certifications: 'Certifications',
+
+    // Skills Categories
+    frontendDev: 'Frontend Development',
+    backendDev: 'Backend Development',
+    toolsTech: 'Tools & Technologies',
+    skillTitles: {
+      frontend: 'Frontend Development',
+      backend: 'Backend Development',
+      tools: 'Tools & Technologies'
+    },
+
+    // Education
+    university: 'Ho Chi Minh City University of Technology and Education',
+    degree: 'Bachelor of Information Technology',
+    eduDescription: 'Software Engineering major with a focus on web development and distributed systems.',
+    gpa: 'GPA: 3.02/4.00',
+    eduAchievements: [
+      'Member of HCMUTE - Developer Student Club',
+      'Member of HCMUTE - Cyber Security Club',
+      'Participated in various hackathons and coding competitions',
+      'Contributed to open-source projects'
+    ],
+
+    // Experience
+    frontendRole: 'Frontend Developer',
+    dscClub: 'HCMUTE-DSC Club',
+    dscDescription: 'Led frontend development for club projects, implementing modern UI/UX principles and responsive design.',
+    dscAchievements: [
+      'Developed and maintained the club\'s official website',
+      'Led a team of 5 developers for projects',
+      'Implemented CI/CD pipeline for automated deployments'
+    ],
+
+    freelanceRole: 'Freelance Developer',
+    selfEmployed: 'Self-Employed',
+    freelanceDescription: 'Work with clients to develop custom web applications and solutions, focusing on user experience and performance optimization.',
+    freelanceAchievements: [
+      'Completed over 10 successful projects',
+      'Maintained 5-star client ratings',
+      'Specialized in React.js and Node.js solutions'
+    ],
+
+    // Certifications
+    reactCert: 'React Developer Certification',
+    fullstackCert: 'Full Stack Development Certification',
+    pythonCert: 'Python Programming Certification',
+    issuedBy: 'Issued by',
 
     // Projects
     projectsTitle: 'Projects',
@@ -69,7 +117,7 @@ export const translations = {
 
     // Contact
     contactTitle: 'Contact',
-    name: 'Name',
+    contactName: 'Name',
     email: 'Email',
     message: 'Message',
     send: 'Send Message',
@@ -78,20 +126,21 @@ export const translations = {
     error: 'Failed to send message. Please try again.'
   },
   vi: {
-    // Navbar
+    // Navigation
     about: 'Giới Thiệu',
     projects: 'Dự Án',
     contact: 'Liên Hệ',
     games: 'Trò Chơi',
     blog: 'Blog',
     achievements: 'Thành Tựu',
-    tutorials: 'Hướng Dẫn Linux',
+    tutorials: 'Hướng Dẫn',
     techStack: 'Công Nghệ',
     secretPage: 'Trang Bí Mật',
     cv: 'CV',
 
     // Hero
     greeting: 'Xin chào, tôi là',
+    fullName: 'Andy Anh',
     roles: {
       linux: 'Chuyên Gia Linux',
       frontend: 'Lập Trình Viên Frontend',
@@ -112,13 +161,22 @@ export const translations = {
     frontendDev: 'Phát Triển Frontend',
     backendDev: 'Phát Triển Backend',
     toolsTech: 'Công Cụ & Công Nghệ',
+    skillTitles: {
+      frontend: 'Phát Triển Giao Diện',
+      backend: 'Phát Triển Hệ Thống',
+      tools: 'Công Cụ & Công Nghệ'
+    },
 
     // Education
     university: 'Trường Đại học Sư phạm Kỹ thuật TP.HCM',
     degree: 'Cử nhân Công nghệ Thông tin',
     eduDescription: 'Chuyên ngành Kỹ thuật Phần mềm với trọng tâm về phát triển web và hệ thống phân tán.',
+    gpa: 'GPA: 3.02/4.00',
     eduAchievements: [
-        'Thành tựu & hoạt động',
+      'Thành viên CLB HCMUTE - Developer Student Club',
+      'Thành viên CLB HCMUTE - Cyber Security Club',
+      'Tham gia nhiều cuộc thi hackathon và lập trình',
+      'Đóng góp cho các dự án mã nguồn mở'
     ],
 
     // Experience
@@ -158,7 +216,7 @@ export const translations = {
 
     // Contact
     contactTitle: 'Liên Hệ',
-    name: 'Họ Tên',
+    contactName: 'Họ Tên',
     email: 'Email',
     message: 'Tin Nhắn',
     send: 'Gửi Tin Nhắn',

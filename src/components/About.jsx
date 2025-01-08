@@ -35,6 +35,7 @@ function About() {
       category: t.frontendDev,
       icon: FaDesktop,
       color: "#4ade80",
+      title: t.skillTitles.frontend,
       technologies: [
         { name: "React.js", icon: FaReact, color: "#61DAFB" },
         { name: "Next.js", icon: FaReact, color: "#61DAFB" },
@@ -47,6 +48,7 @@ function About() {
       category: t.backendDev,
       icon: FaServer,
       color: "#3b82f6",
+      title: t.skillTitles.backend,
       technologies: [
         { name: "Node.js", icon: FaNodeJs, color: "#339933" },
         { name: "Flask Python", icon: SiFlask, color: "#000000" },
@@ -61,6 +63,7 @@ function About() {
       category: t.toolsTech,
       icon: FaTerminal,
       color: "#818cf8",
+      title: t.skillTitles.tools,
       technologies: [
         { name: "Git", icon: FaGit, color: "#F05032" },
         { name: "Docker", icon: FaDocker, color: "#2496ED" },
@@ -78,7 +81,7 @@ function About() {
       degree: t.degree,
       year: "2020 - 2024",
       description: t.eduDescription,
-      achievements: t.achievements
+      achievements: t.eduAchievements
     }
   ];
 
@@ -121,10 +124,10 @@ function About() {
   ];
 
   const tabs = [
-    { id: 'skills', label: 'Skills', icon: FaTerminal },
-    { id: 'education', label: 'Education', icon: FaGraduationCap },
-    { id: 'experience', label: 'Experience', icon: FaBriefcase },
-    { id: 'certifications', label: 'Certifications', icon: FaMedal }
+    { id: 'skills', label: t.skills, icon: FaTerminal },
+    { id: 'education', label: t.education, icon: FaGraduationCap },
+    { id: 'experience', label: t.experience, icon: FaBriefcase },
+    { id: 'certifications', label: t.certifications, icon: FaMedal }
   ];
 
   return (
@@ -196,7 +199,7 @@ function About() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {skills.map((skillGroup) => (
                   <motion.div
-                    key={skillGroup.category}
+                    key={skillGroup.title}
                     className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
                     whileHover={{ y: -5 }}
                   >
@@ -208,7 +211,7 @@ function About() {
                         />
                       </div>
                       <h3 className="text-lg font-semibold text-white">
-                        {skillGroup.category}
+                        {skillGroup.title}
                       </h3>
                     </div>
 
@@ -251,6 +254,9 @@ function About() {
                         <p className="text-[#4ade80] font-medium">
                           {edu.degree}
                         </p>
+                        <p className="text-blue-400 font-medium mt-1">
+                          {t.gpa}
+                        </p>
                       </div>
                       <span className="text-gray-400 text-sm">
                         {edu.year}
@@ -259,20 +265,15 @@ function About() {
                     <p className="text-gray-300 mb-4">
                       {edu.description}
                     </p>
-                    <ul className="space-y-2">
-                      {edu.achievements.map((achievement, index) => (
-                        <motion.li
-                          key={index}
-                          className="flex items-center space-x-2 text-gray-400"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full" />
-                          <span>{achievement}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
+                    {edu.achievements && edu.achievements.length > 0 && (
+                      <ul className="list-disc list-inside text-gray-300 space-y-2">
+                        {edu.achievements.map((achievement, index) => (
+                          <li key={index} className="hover:text-[#4ade80] transition-colors">
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </motion.div>
                 ))}
               </div>
