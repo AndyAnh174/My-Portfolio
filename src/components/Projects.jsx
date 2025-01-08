@@ -23,7 +23,7 @@ import {
 import { IoLogoFirebase } from 'react-icons/io5';
 import Merry from '../assets/merry.png';
 import self from '../assets/self.jpg';
-import DSC from '../assets/dsc.jpg';
+import DSC from '../assets/DSC.jpg';
 import Tet from '../assets/pc.png';
 import { useLanguage, translations } from '../context/LanguageContext';
 
