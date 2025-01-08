@@ -62,7 +62,7 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-gray-400 mb-2">
-                {t.name}
+                {t.contactName}
               </label>
               <input
                 type="text"

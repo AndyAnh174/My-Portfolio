@@ -117,7 +117,7 @@ export const translations = {
 
     // Contact
     contactTitle: 'Contact',
-    contactName: 'Name',
+    contactName: 'FullName',
     email: 'Email',
     message: 'Message',
     send: 'Send Message',
