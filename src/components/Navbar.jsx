@@ -1,221 +1,235 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faHome, faUser, faCode, faGamepad, faBars, faTimes, faFile, faPen, faTrophy, faTerminal, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
-import avatar from '../assets/avatar.jpg';
+import { FaHome, FaUser, FaCode, FaGamepad, FaBlog, FaTrophy, FaTerminal, FaLayerGroup, FaLock, FaFile } from 'react-icons/fa';
+import { useLanguage, translations } from '../context/LanguageContext';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { language, toggleLanguage } = useLanguage();
+    const t = translations[language];
     const location = useLocation();
     const scrollToSection = useScrollToSection();
 
-    const togglePanel = () => setIsOpen(!isOpen);
-
-    // Theo dõi scroll
     useEffect(() => {
         const handleScroll = () => {
-            const offset = window.scrollY;
-            if (offset > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
+            setScrolled(window.scrollY > 50);
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = [
-        { name: 'About', id: 'about', icon: faUser },
-        { name: 'Projects', id: 'projects', icon: faCode },
-        { name: 'Contact', id: 'contact', icon: faEnvelope }
+    const mainNavLinks = [
+        { title: t.about, id: 'about', icon: FaUser },
+        { title: t.projects, id: 'projects', icon: FaCode },
+        { title: t.contact, id: 'contact', icon: FaUser }
     ];
 
-    const sidebarLinks = [
-        { name: 'Project Linux', to: '/project-linux', icon: faCode, color: 'from-[#DE741C] to-[#FEA837]' },
-        { name: 'Blog', to: '/blog', icon: faPen, color: 'from-[#84495F] to-[#B85B56]' },
-        { name: 'Achievements', to: '/achievements', icon: faTrophy, color: 'from-[#593E67] to-[#84495F]' },
-        { name: 'Linux Tutorials', to: '/linux-tutorials', icon: faTerminal, color: 'from-[#4A90E2] to-[#357ABD]' },
-        { name: 'Tech Stack', to: '/tech-stack', icon: faLayerGroup, color: 'from-[#DE741C] to-[#FEA837]' },
-        { name: 'Mini Games', to: '/games', icon: faGamepad, color: 'from-[#84495F] to-[#B85B56]' },
-        { name: 'Secret Page', to: '/secret', icon: faUser, color: 'from-[#593E67] to-[#84495F]' },
-        { name: 'CV', to: '/cv', icon: faFile, color: 'from-[#4A90E2] to-[#357ABD]' }
+    const dropdownLinks = [
+        { title: t.games, path: '/games', icon: FaGamepad },
+        { title: t.blog, path: '/blog', icon: FaBlog },
+        { title: t.achievements, path: '/achievements', icon: FaTrophy },
+        { title: t.tutorials, path: '/tutorials', icon: FaTerminal },
+        { title: t.techStack, path: '/tech-stack', icon: FaLayerGroup },
+        { title: t.secretPage, path: '/secret', icon: FaLock },
+        { title: t.cv, path: '/cv', icon: FaFile }
     ];
+
+    const handleNavClick = (id) => {
+        if (location.pathname !== '/') {
+            // Nếu không ở trang chủ, chuyển về trang chủ trước
+            window.location.href = '/#' + id;
+        } else {
+            // Nếu đang ở trang chủ, cuộn đến section
+            scrollToSection(id);
+        }
+    };
 
     return (
-        <>
-            <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                className={`fixed w-full z-50 transition-all duration-300 ${
-                    scrolled 
-                        ? 'bg-[#593E67]/90 backdrop-blur-md py-2 shadow-lg'
-                        : 'bg-[#593E67] py-4'
-                }`}
-            >
-                <div className="container mx-auto px-6">
-                    <div className="flex justify-between items-center relative">
-                        {/* Desktop Navigation - Left */}
-                        <div className="hidden md:flex items-center space-x-8 flex-1">
-                            {navLinks.map((link) => (
-                                <motion.button
-                                    key={link.name}
-                                    onClick={() => scrollToSection(link.id)}
-                                    className="text-white hover:text-[#FEA837] transition-colors flex items-center space-x-2"
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    <FontAwesomeIcon icon={link.icon} />
-                                    <span>{link.name}</span>
-                                </motion.button>
-                            ))}
+        <nav className={`fixed w-full z-50 transition-all duration-300 ${
+            scrolled ? 'bg-[#0f0f1a]/98 shadow-lg' : 'bg-[#0f0f1a]/80'
+        }`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16">
+                    {/* Logo */}
+                    <Link 
+                        to="/" 
+                        className="flex items-center space-x-3 group relative z-50 pl-2"
+                    >
+                        <div className="relative">
+                            <div className="absolute -inset-2 bg-gradient-to-r from-[#4ade80] to-[#3b82f6] rounded-lg opacity-0 group-hover:opacity-20 blur transition-opacity duration-300" />
+                            <FaHome className="text-3xl text-white hover:text-[#4ade80] transition-colors duration-300 relative" />
                         </div>
+                        <div className="hidden md:block relative">
+                            <div className="absolute -inset-2 bg-gradient-to-r from-[#4ade80] to-[#3b82f6] rounded-lg opacity-0 group-hover:opacity-10 blur-md transition-opacity duration-300" />
+                            <span className="text-2xl font-bold relative">
+                                <span className="bg-gradient-to-r from-[#4ade80] to-[#3b82f6] bg-clip-text text-transparent group-hover:from-[#3b82f6] group-hover:to-[#4ade80] transition-all duration-300">
+                                    Portfolio
+                                </span>
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#4ade80] to-[#3b82f6] group-hover:w-full transition-all duration-300"></span>
+                            </span>
+                        </div>
+                    </Link>
 
-                        {/* Logo - Absolute Center */}
-                        <Link 
-                            to="/" 
-                            className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2"
-                        >
-                            <motion.img
-                                src={avatar}
-                                alt="Logo"
-                                className="w-10 h-10 rounded-full border-2 border-[#FEA837]"
-                                whileHover={{ scale: 1.1, rotate: 360 }}
-                                transition={{ duration: 0.5 }}
-                            />
-                            <span className="text-xl font-bold text-white">AndyAnh</span>
-                        </Link>
-
-                        {/* Right Section - For Balance */}
-                        <div className="flex items-center justify-end space-x-4 flex-1">
-                            <motion.button
-                                onClick={togglePanel}
-                                className="text-white hover:text-[#FEA837] transition-colors"
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center space-x-4">
+                        {/* Main Links */}
+                        {mainNavLinks.map((link) => (
+                            <button
+                                key={link.id}
+                                onClick={() => handleNavClick(link.id)}
+                                className="text-gray-300 hover:text-[#4ade80] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                             >
-                                <FontAwesomeIcon icon={faBars} className="text-xl" />
-                            </motion.button>
+                                <div className="flex items-center space-x-1">
+                                    <link.icon className="text-[#4ade80]" />
+                                    <span>{link.title}</span>
+                                </div>
+                            </button>
+                        ))}
+
+                        {/* More Dropdown */}
+                        <div className="relative group">
+                            <button className="text-gray-300 hover:text-[#4ade80] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                                More
+                            </button>
+                            <div className="absolute right-0 mt-2 w-48 bg-[#1a1a2e] rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                {dropdownLinks.map((link) => (
+                                    <Link
+                                        key={link.path}
+                                        to={link.path}
+                                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#4ade80]/10 hover:text-[#4ade80] transition-colors duration-200"
+                                    >
+                                        <div className="flex items-center space-x-2">
+                                            <link.icon />
+                                            <span>{link.title}</span>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
 
-                        {/* Mobile Menu Button */}
-                        <motion.button
-                            className="md:hidden text-white"
-                            onClick={togglePanel}
-                            whileTap={{ scale: 0.95 }}
+                        {/* Language Dropdown */}
+                        <div className="relative group">
+                            <button className="flex items-center space-x-2 text-gray-300 hover:text-[#4ade80] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                                <span>{language === 'en' ? 'English' : 'Tiếng Việt'}</span>
+                                <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div className="absolute right-0 mt-2 w-40 bg-[#1a1a2e] rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <button
+                                    onClick={() => language !== 'en' && toggleLanguage()}
+                                    className={`w-full text-left px-4 py-2 text-sm ${language === 'en' ? 'text-[#4ade80] bg-[#4ade80]/10' : 'text-gray-300 hover:bg-[#4ade80]/10 hover:text-[#4ade80]'} transition-colors duration-200`}
+                                >
+                                    English
+                                </button>
+                                <button
+                                    onClick={() => language !== 'vi' && toggleLanguage()}
+                                    className={`w-full text-left px-4 py-2 text-sm ${language === 'vi' ? 'text-[#4ade80] bg-[#4ade80]/10' : 'text-gray-300 hover:bg-[#4ade80]/10 hover:text-[#4ade80]'} transition-colors duration-200`}
+                                >
+                                    Tiếng Việt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile menu button */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="relative z-50 text-gray-300 hover:text-[#4ade80] p-2 rounded-lg transition-colors duration-200"
                         >
-                            <FontAwesomeIcon icon={faBars} className="text-xl" />
-                        </motion.button>
+                            <div className="w-6 h-5 flex flex-col justify-between items-center">
+                                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+                                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                            </div>
+                        </button>
                     </div>
                 </div>
-            </motion.nav>
+            </div>
 
-            {/* Sidebar Panel */}
-            <AnimatePresence>
-                {isOpen && (
-                    <>
-                        {/* Overlay */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.5 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black z-40"
-                            onClick={togglePanel}
-                        />
+            {/* Mobile menu */}
+            <div 
+                className={`${
+                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                } fixed top-0 left-0 w-full h-screen bg-[#0f0f1a]/98 backdrop-blur-md transform transition-transform duration-300 ease-in-out md:hidden`}
+            >
+                <div className="px-4 py-20 space-y-1">
+                    {/* Language Options */}
+                    <div className="mb-4 px-4">
+                        <div className="text-sm font-medium text-gray-400 mb-2">Ngôn ngữ</div>
+                        <div className="grid grid-cols-2 gap-2">
+                            <button
+                                onClick={() => {
+                                    if (language !== 'en') toggleLanguage();
+                                    setIsOpen(false);
+                                }}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                                    language === 'en' 
+                                    ? 'bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]/30' 
+                                    : 'text-gray-300 border border-gray-700 hover:border-[#4ade80]/30 hover:text-[#4ade80] hover:bg-[#4ade80]/10'
+                                } transition-all duration-200`}
+                            >
+                                English
+                            </button>
+                            <button
+                                onClick={() => {
+                                    if (language !== 'vi') toggleLanguage();
+                                    setIsOpen(false);
+                                }}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                                    language === 'vi'
+                                    ? 'bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]/30'
+                                    : 'text-gray-300 border border-gray-700 hover:border-[#4ade80]/30 hover:text-[#4ade80] hover:bg-[#4ade80]/10'
+                                } transition-all duration-200`}
+                            >
+                                Tiếng Việt
+                            </button>
+                        </div>
+                    </div>
 
-                        {/* Sidebar */}
-                        <motion.div
-                            initial={{ x: '100%' }}
-                            animate={{ x: 0 }}
-                            exit={{ x: '100%' }}
-                            transition={{ type: 'tween', duration: 0.3 }}
-                            className="fixed right-0 top-0 h-full w-80 bg-gradient-to-b from-[#593E67] to-[#84495F] shadow-2xl z-50 overflow-y-auto custom-scrollbar"
-                        >
-                            <div className="p-6 h-full flex flex-col">
-                                {/* Close Button */}
-                                <motion.button
-                                    onClick={togglePanel}
-                                    className="absolute top-4 right-4 text-white hover:text-[#FEA837]"
-                                    whileHover={{ rotate: 180 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <FontAwesomeIcon icon={faTimes} className="text-xl" />
-                                </motion.button>
-
-                                {/* Profile Section */}
-                                <div className="text-center mb-8">
-                                    <motion.img
-                                        src={avatar}
-                                        alt="Profile"
-                                        className="w-24 h-24 rounded-full border-4 border-[#FEA837] mx-auto mb-4"
-                                        whileHover={{ scale: 1.1 }}
-                                    />
-                                    <h2 className="text-xl font-bold text-white mb-2">
-                                        Hồ Việt Anh (AndyAnh)
-                                    </h2>
-                                    <div className="text-gray-300 space-y-1">
-                                        <p className="flex items-center justify-center">
-                                            <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                                            0949000030
-                                        </p>
-                                        <p className="flex items-center justify-center">
-                                            <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                                            0915223292
-                                        </p>
-                                        <p className="flex items-center justify-center">
-                                            <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                                            hovietanh147@gmail.com
-                                        </p>
-                                    </div>
+                    {/* Navigation Links */}
+                    <div className="space-y-1">
+                        {mainNavLinks.map((link) => (
+                            <button
+                                key={link.id}
+                                onClick={() => {
+                                    handleNavClick(link.id);
+                                    setIsOpen(false);
+                                }}
+                                className="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-[#4ade80] hover:bg-[#4ade80]/10 transition-colors duration-200"
+                            >
+                                <div className="flex items-center space-x-3">
+                                    <link.icon className="text-xl text-[#4ade80]" />
+                                    <span>{link.title}</span>
                                 </div>
+                            </button>
+                        ))}
+                    </div>
 
-                                {/* Navigation Links - Thêm container có thể cuộn */}
-                                <div className="flex-1 overflow-y-auto custom-scrollbar">
-                                    <div className="space-y-4">
-                                        {sidebarLinks.map((link) => (
-                                            <motion.div
-                                                key={link.to}
-                                                whileHover={{ x: 10 }}
-                                                className="relative group"
-                                            >
-                                                <Link
-                                                    to={link.to}
-                                                    onClick={togglePanel}
-                                                    className={`block p-4 rounded-lg bg-gradient-to-r ${link.color} 
-                                                        text-white font-medium transition-transform transform
-                                                        hover:shadow-lg`}
-                                                >
-                                                    <div className="flex items-center space-x-3">
-                                                        <FontAwesomeIcon icon={link.icon} />
-                                                        <span>{link.name}</span>
-                                                    </div>
-                                                </Link>
-                                            </motion.div>
-                                        ))}
-                                    </div>
+                    {/* More Links */}
+                    <div className="pt-4 space-y-1">
+                        <div className="px-4 text-sm font-medium text-gray-400 mb-2">More</div>
+                        {dropdownLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                className="block px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-[#4ade80] hover:bg-[#4ade80]/10 transition-colors duration-200"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <div className="flex items-center space-x-3">
+                                    <link.icon className="text-xl text-[#4ade80]" />
+                                    <span>{link.title}</span>
                                 </div>
-
-                                {/* Footer */}
-                                <div className="mt-4 text-center">
-                                    <a
-                                        href="https://andyanh-contact.vercel.app/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[#FEA837] hover:underline text-sm"
-                                    >
-                                        Visit My Contact Page
-                                    </a>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-        </>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </nav>
     );
 }
 

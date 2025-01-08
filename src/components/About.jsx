@@ -1,203 +1,362 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import about from '../assets/about.jpg';
+import { 
+  FaServer, 
+  FaGlobe,
+  FaDesktop,
+  FaGraduationCap,
+  FaBriefcase,
+  FaMedal,
+  FaTerminal,
+  FaReact, 
+  FaNodeJs, 
+  FaJs,
+  FaGit,
+  FaDocker,
+  FaLinux
+} from 'react-icons/fa';
+import { SiNeovim } from "react-icons/si";
+import { DiPostgresql } from "react-icons/di";
+import { SiMysql, SiTypescript, SiFlask, SiVim, SiMongodb } from "react-icons/si";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { IoLogoFirebase } from "react-icons/io5";
+import { MdDesignServices } from 'react-icons/md';
+import { useLanguage, translations } from '../context/LanguageContext';
 
 function About() {
-    const [isFullscreen, setIsFullscreen] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
-    return (
-        <section id="about" className="relative py-20 bg-gradient-to-b from-[#84495F] to-[#593E67] overflow-hidden shadow-lg border border-white/10 text-white overflow-hidden">
-            {/* Background Patterns */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-[#FEA837] rounded-full filter blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#DE741C] rounded-full filter blur-3xl" />
-            </div>
+  const [activeTab, setActiveTab] = useState('skills');
+  const [hoveredSkill, setHoveredSkill] = useState(null);
 
-            <div className="container mx-auto px-6">
-                <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
-                    {/* Image Section */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:w-1/2"
-                    >
-                        <div className="relative group cursor-pointer" onClick={() => setIsFullscreen(true)}>
-                            {/* Main Image */}
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                className="relative z-10 rounded-2xl overflow-hidden shadow-2xl"
-                            >
-                                <img
-                                    src={about}
-                                    alt="About Me"
-                                    className="w-full h-[600px] object-contain"
-                                />
-                                {/* Overlay with text */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <p className="text-white text-lg font-medium">Click to view full image</p>
-                                </div>
-                            </motion.div>
-                            
-                            {/* Decorative Elements */}
-                            <div 
-                                className="absolute -inset-2 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-2xl opacity-50 group-hover:opacity-70 blur transition-opacity w-full"
-                            />
-                        </div>
-                    </motion.div>
+  const skills = [
+    {
+      category: t.frontendDev,
+      icon: FaDesktop,
+      color: "#4ade80",
+      technologies: [
+        { name: "React.js", icon: FaReact, color: "#61DAFB" },
+        { name: "Next.js", icon: FaReact, color: "#61DAFB" },
+        { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+        { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
+        { name: "Tailwind CSS", icon: RiTailwindCssFill, color: "#38B2AC" }
+      ]
+    },
+    {
+      category: t.backendDev,
+      icon: FaServer,
+      color: "#3b82f6",
+      technologies: [
+        { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+        { name: "Flask Python", icon: SiFlask, color: "#000000" },
+        { name: "REST APIs", icon: FaGlobe, color: "#3b82f6" },
+        { name: "PostgreSQL", icon: DiPostgresql, color: "#336791" },
+        { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+        { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+        { name: "Firebase", icon: IoLogoFirebase, color: "#FFCA28" }
+      ]
+    },
+    {
+      category: t.toolsTech,
+      icon: FaTerminal,
+      color: "#818cf8",
+      technologies: [
+        { name: "Git", icon: FaGit, color: "#F05032" },
+        { name: "Docker", icon: FaDocker, color: "#2496ED" },
+        { name: "NeoVim", icon: SiNeovim, color: "#57A143" },
+        { name: "Web Design", icon: MdDesignServices, color: "#FF7F50" },
+        { name: "Linux", icon: FaLinux, color: "#FCC624" },
+        { name: "Web Services", icon: FaGlobe, color: "#3b82f6" }
+      ]
+    }
+  ];
 
-                    {/* Content Section */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:w-1/2"
-                    >
-                        <div className="mb-6">
-                            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#FEA837] to-[#DE741C] bg-clip-text text-transparent inline-block">
-                                My Journey
-                            </h2>
-                        </div>
+  const education = [
+    {
+      school: t.university,
+      degree: t.degree,
+      year: "2020 - 2024",
+      description: t.eduDescription,
+      achievements: t.achievements
+    }
+  ];
 
-                        {/* Skills List */}
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            {[
-                                {
-                                    title: 'Technical Skills',
-                                    skills: ['Linux System', 'Frontend Development', 'UI/UX Design', 'Open Source']
-                                },
-                                {
-                                    title: 'Development',
-                                    skills: ['React', 'TailwindCSS', 'Node.js', 'Git']
-                                }
-                            ].map((category, index) => (
-                                <motion.div
-                                    key={category.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
-                                >
-                                    <h3 className="text-lg font-medium text-white mb-3">{category.title}</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {category.skills.map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="px-3 py-1 bg-white/10 rounded-full text-sm text-white hover:bg-white/20 transition-colors"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+  const experience = [
+    {
+      role: t.frontendRole,
+      company: t.dscClub,
+      period: "2022 - Present",
+      description: t.dscDescription,
+      achievements: t.dscAchievements
+    },
+    {
+      role: t.freelanceRole,
+      company: t.selfEmployed,
+      period: "2021 - Present",
+      description: t.freelanceDescription,
+      achievements: t.freelanceAchievements
+    }
+  ];
 
-                        {/* Experience Cards */}
-                        <div className="space-y-4">
-                            {[
-                                {
-                                    year: '2023-Present',
-                                    title: 'Freelance Developer',
-                                    description: 'Specializing in frontend development and Linux system administration.'
-                                },
-                                {
-                                    year: '2021-Present',
-                                    title: 'Open Source Contributor',
-                                    description: 'Active contributor to various Linux and web development projects.'
-                                }
-                            ].map((exp, index) => (
-                                <motion.div
-                                    key={exp.year}
-                                    initial={{ opacity: 0, x: 50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.2 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors"
-                                >
-                                    <div className="text-[#FEA837] text-sm">{exp.year}</div>
-                                    <div className="font-medium mb-1">{exp.title}</div>
-                                    <div className="text-sm text-gray-300">{exp.description}</div>
-                                </motion.div>
-                            ))}
-                        </div>
+  const certifications = [
+    {
+      name: t.reactCert,
+      issuer: "Meta",
+      date: "2023",
+      link: "#"
+    },
+    {
+      name: t.fullstackCert,
+      issuer: "FreeCodeCamp",
+      date: "2022",
+      link: "#"
+    },
+    {
+      name: t.pythonCert,
+      issuer: "HackerRank",
+      date: "2022",
+      link: "#"
+    }
+  ];
 
-                        {/* Personal Interests */}
+  const tabs = [
+    { id: 'skills', label: 'Skills', icon: FaTerminal },
+    { id: 'education', label: 'Education', icon: FaGraduationCap },
+    { id: 'experience', label: 'Experience', icon: FaBriefcase },
+    { id: 'certifications', label: 'Certifications', icon: FaMedal }
+  ];
+
+  return (
+    <section id="about" className="relative py-20 bg-[#0f0f1a] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#4ade80]/10 rounded-full filter blur-3xl animate-blob" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#3b82f6]/10 rounded-full filter blur-3xl animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#818cf8]/10 rounded-full filter blur-3xl animate-blob animation-delay-4000" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4ade80] to-[#3b82f6] mb-6">
+            {t.aboutMe}
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#4ade80] to-[#3b82f6] mx-auto rounded-full" />
+        </motion.div>
+
+        {/* Introduction */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
+          <p className="text-gray-300 text-lg leading-relaxed">
+            {t.aboutDescription}
+          </p>
+        </motion.div>
+
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {tabs.map((tab) => (
+            <motion.button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center space-x-2 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
+                ${activeTab === tab.id 
+                  ? 'bg-gradient-to-r from-[#4ade80] to-[#3b82f6] text-white shadow-lg' 
+                  : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <tab.icon className="text-lg" />
+              <span>{tab.label}</span>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Skills */}
+            {activeTab === 'skills' && (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {skills.map((skillGroup) => (
+                  <motion.div
+                    key={skillGroup.category}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-center space-x-3 mb-6">
+                      <div className="p-3 rounded-full bg-white/5">
+                        <skillGroup.icon 
+                          className="text-xl"
+                          style={{ color: skillGroup.color }}
+                        />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white">
+                        {skillGroup.category}
+                      </h3>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      {skillGroup.technologies.map((tech) => (
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.6 }}
-                            className="mt-6 text-gray-300"
+                          key={tech.name}
+                          className="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/5 transition-colors group"
+                          whileHover={{ x: 5 }}
                         >
-                            <h3 className="text-white font-medium mb-2">Personal Interests</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {['Open Source', 'Linux', 'Web Development', 'UI Design', 'Gaming', 'Customer DE'].map((interest) => (
-                                    <span
-                                        key={interest}
-                                        className="px-3 py-1 bg-white/10 rounded-full text-sm hover:bg-white/20 transition-colors"
-                                    >
-                                        {interest}
-                                    </span>
-                                ))}
-                            </div>
+                          <tech.icon 
+                            className="text-xl"
+                            style={{ color: tech.color }}
+                          />
+                          <span className="text-gray-300 group-hover:text-white transition-colors">
+                            {tech.name}
+                          </span>
                         </motion.div>
-                    </motion.div>
-                </div>
-            </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
 
-            {/* Fullscreen Image Modal */}
-            <AnimatePresence>
-                {isFullscreen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-                        onClick={() => setIsFullscreen(false)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.5 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.5 }}
-                            className="relative max-w-[90vw] max-h-[90vh]"
+            {/* Education */}
+            {activeTab === 'education' && (
+              <div className="space-y-8">
+                {education.map((edu) => (
+                  <motion.div
+                    key={edu.school}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-2">
+                          {edu.school}
+                        </h3>
+                        <p className="text-[#4ade80] font-medium">
+                          {edu.degree}
+                        </p>
+                      </div>
+                      <span className="text-gray-400 text-sm">
+                        {edu.year}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 mb-4">
+                      {edu.description}
+                    </p>
+                    <ul className="space-y-2">
+                      {edu.achievements.map((achievement, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-center space-x-2 text-gray-400"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
                         >
-                            <motion.img
-                                src={about}
-                                alt="About Me"
-                                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                                layoutId="about-image"
-                            />
-                            {/* Close button */}
-                            <button
-                                onClick={() => setIsFullscreen(false)}
-                                className="absolute -top-4 -right-4 w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-gray-200"
-                            >
-                                ×
-                            </button>
-                            {/* Image navigation buttons */}
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4">
-                                <button className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors">
-                                    Previous
-                                </button>
-                                <button className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors">
-                                    Next
-                                </button>
-                            </div>
-                        </motion.div>
-                        {/* Image info */}
-                        <div className="absolute bottom-8 left-8 text-white">
-                            <h3 className="text-xl font-bold mb-2">About Me Image</h3>
-                            <p className="text-sm text-gray-300">Click anywhere to close</p>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </section>
-    );
+                          <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full" />
+                          <span>{achievement}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {/* Experience */}
+            {activeTab === 'experience' && (
+              <div className="space-y-8">
+                {experience.map((exp) => (
+                  <motion.div
+                    key={exp.role}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-2">
+                          {exp.role}
+                        </h3>
+                        <p className="text-[#4ade80] font-medium">
+                          {exp.company}
+                        </p>
+                      </div>
+                      <span className="text-gray-400 text-sm">
+                        {exp.period}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 mb-4">
+                      {exp.description}
+                    </p>
+                    <ul className="space-y-2">
+                      {exp.achievements.map((achievement, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-center space-x-2 text-gray-400"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full" />
+                          <span>{achievement}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {/* Certifications */}
+            {activeTab === 'certifications' && (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {certifications.map((cert) => (
+                  <motion.a
+                    key={cert.name}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <FaMedal 
+                        className="text-2xl text-[#4ade80] group-hover:scale-110 transition-transform"
+                      />
+                      <span className="text-gray-400 text-sm">
+                        {cert.date}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#4ade80] transition-colors">
+                      {cert.name}
+                    </h3>
+                    <p className="text-gray-400">
+                      Issued by {cert.issuer}
+                    </p>
+                  </motion.a>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
 }
 
 export default About;

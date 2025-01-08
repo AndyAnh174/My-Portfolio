@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Loading from './components/Loading';
 import Breadcrumbs from './components/Breadcrumbs';
 import ShareButtons from './components/ShareButtons';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Lazy load các components
 const Home = React.lazy(() => import('./pages/Home'));
@@ -18,29 +19,33 @@ const ProjectLinux = React.lazy(() => import('./pages/ProjectLinux'));
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Breadcrumbs />
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/games" element={<GamePage />} />
-            <Route path="/secret" element={<SecretPage />} />
-            <Route path="/project-linux" element={<ProjectLinux />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/linux-tutorials" element={<LinuxTutorials />} />
-            <Route path="/tech-stack" element={<TechStack />} />
-            <Route path="/cv" element={<CV />} />
-          </Routes>
-        </Suspense>
-        <ShareButtons 
-          title="Andy Anh's Portfolio" 
-          url={window.location.href} 
-        />
+    <LanguageProvider>
+      <div className="bg-[#0f0f1a] text-white">
+        <Router>
+          <div>
+            <Navbar />
+            <Breadcrumbs />
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/games" element={<GamePage />} />
+                <Route path="/secret" element={<SecretPage />} />
+                <Route path="/project-linux" element={<ProjectLinux />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/achievements" element={<Achievements />} />
+                <Route path="/linux-tutorials" element={<LinuxTutorials />} />
+                <Route path="/tech-stack" element={<TechStack />} />
+                <Route path="/cv" element={<CV />} />
+              </Routes>
+            </Suspense>
+            <ShareButtons 
+              title="Andy Anh's Portfolio" 
+              url={window.location.href} 
+            />
+          </div>
+        </Router>
       </div>
-    </Router>
+    </LanguageProvider>
   );
 }
 

@@ -1,159 +1,127 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import avatar from '../assets/avatar.jpg';
+import { TypeAnimation } from 'react-type-animation';
+import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { useLanguage, translations } from '../context/LanguageContext';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
+  const scrollToSection = useScrollToSection();
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      setMousePosition({
-        x: (clientX - centerX) / centerX,
-        y: (clientY - centerY) / centerY,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const calculateRotation = (x, y) => {
-    return isHovered ? {
-      rotateX: y * 20,
-      rotateY: -x * 20,
-      transformStyle: "preserve-3d",
-    } : {};
-  };
+  const socialLinks = [
+    { icon: FaGithub, url: "https://github.com/AndyAnh174", color: "hover:text-[#4ade80]" },
+    { icon: FaLinkedin, url: "https://www.linkedin.com/in/việt-anh-hồ-b61489245/", color: "hover:text-[#3b82f6]" },
+    { icon: FaFacebook, url: "https://www.facebook.com/andy.anh17405", color: "hover:text-[#818cf8]" }
+  ];
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#593E67] to-[#84495F] shadow-lg border border-white/10">
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0 grid grid-cols-8 grid-rows-8">
-        {[...Array(64)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.1, 0.2, 0.1] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: i * 0.1,
-            }}
-          />
-        ))}
-      </div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0f0f1a]">
+      {/* Blob animation */}
+      <div className="absolute top-0 -left-4 w-96 h-96 bg-[#4ade80] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div className="absolute top-0 -right-4 w-96 h-96 bg-[#3b82f6] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div className="absolute -bottom-8 left-20 w-96 h-96 bg-[#818cf8] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-      {/* Main Content */}
-      <div className="relative h-full flex items-center justify-center px-6">
-        <motion.div
-          className="max-w-4xl mx-auto"
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
-          animate={calculateRotation(mousePosition.x, mousePosition.y)}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          {/* 3D Layers */}
-          <div className="relative">
-            {/* Background Layer */}
-            <motion.div
-              className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-2xl"
-              style={{ transform: "translateZ(-50px)" }}
-            />
-
-            {/* Content Container */}
-            <div className="relative glass-morphism rounded-2xl p-8 md:p-12">
-              {/* Profile Image with Glow */}
-              <motion.div
-                className="relative w-40 h-40 mx-auto mb-8"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-full blur-lg opacity-30" />
-                <img
-                  src={avatar}
-                  alt="Profile"
-                  className="relative w-full h-full rounded-full object-cover border-4 border-white/20"
-                />
-                <div 
-                  className="absolute -inset-1 bg-gradient-to-r from-[#FEA837]/40 to-[#DE741C]/40 rounded-full blur animate-[pulse_3s_ease-in-out_infinite] opacity-20" 
-                />
-              </motion.div>
-
-              {/* Text Content */}
-              <motion.div
-                className="text-center relative"
-                style={{ transform: "translateZ(50px)" }}
-              >
-                <motion.h1
-                  className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  AndyAnh (Viet Anh)
-                </motion.h1>
-
-                <motion.div
-                  className="flex justify-center gap-4 mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {['Linux', 'Frontend', 'Open Source'].map((tag, index) => (
-                    <span
-                      key={tag}
-                      className="px-4 py-1 bg-white/10 rounded-full text-sm font-medium text-white"
-                      style={{
-                        transform: `translateZ(${(index + 1) * 20}px)`,
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
-
-                <motion.p
-                  className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  Linux enthusiast and freelance front-end developer, focused on crafting
-                  user-centered web solutions and driven by a passion for open-source development.
-                </motion.p>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  className="flex justify-center gap-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <motion.a
-                    href="#projects"
-                    className="relative group"
-                    whileHover={{ scale: 1.05 }}
-                    style={{ transform: "translateZ(75px)" }}
-                  >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#FEA837] to-[#DE741C] rounded-lg blur opacity-70 group-hover:opacity-100 transition duration-200" />
-                    <button className="relative px-8 py-3 bg-[#DE741C] text-white rounded-lg font-medium">
-                      View Projects
-                    </button>
-                  </motion.a>
-                </motion.div>
-              </motion.div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
+          <div className="relative inline-block mb-8">
+            <div className="w-48 h-48 md:w-56 md:h-56 relative">
+              <img
+                src={avatar}
+                alt="Profile"
+                className="w-full h-full rounded-full border-4 border-[#4ade80] shadow-lg hover:scale-110 transition-transform duration-300 object-cover"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4ade80] to-[#3b82f6] opacity-0 hover:opacity-30 transition-opacity duration-300"></div>
             </div>
           </div>
-        </motion.div>
+
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4ade80] to-[#3b82f6]">
+              {t.greeting} AndyAnh
+            </span>
+          </h1>
+
+          <div className="mb-8">
+            <TypeAnimation
+              sequence={[
+                t.roles.linux,
+                2000,
+                t.roles.frontend,
+                2000,
+                t.roles.opensource,
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              className="text-2xl sm:text-3xl md:text-4xl text-gray-300"
+              repeat={Infinity}
+            />
+          </div>
+
+          <p className="text-gray-400 text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed">
+            {t.description}
+          </p>
+
+          <div className="flex justify-center space-x-8 mb-12">
+            <motion.button
+              onClick={() => scrollToSection('projects')}
+              className="bg-gradient-to-r from-[#4ade80] to-[#3b82f6] text-white px-8 py-4 rounded-lg text-lg font-medium hover:shadow-lg transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {t.viewProjects}
+            </motion.button>
+          </div>
+
+          <div className="flex justify-center space-x-8">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-white text-3xl ${social.color} transition-all duration-300`}
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <social.icon />
+              </motion.a>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Corner Decorations */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-b from-[#FEA837] to-transparent opacity-20 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-t from-[#DE741C] to-transparent opacity-20 blur-3xl" />
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        onClick={() => scrollToSection('about')}
+      >
+        <motion.div
+          animate={{
+            y: [0, 10, 0],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className="w-8 h-14 rounded-full border-2 border-gray-400 flex justify-center items-start p-2"
+        >
+          <motion.div
+            animate={{
+              y: [0, 6, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            className="w-1.5 h-1.5 rounded-full bg-gray-400"
+          ></motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
