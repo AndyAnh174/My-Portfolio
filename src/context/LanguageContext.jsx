@@ -118,7 +118,7 @@ export const translations = {
     degree: 'Cử nhân Công nghệ Thông tin',
     eduDescription: 'Chuyên ngành Kỹ thuật Phần mềm với trọng tâm về phát triển web và hệ thống phân tán.',
     achievements: [
-        "Thành tựu & hoạt động",
+        'Thành tựu & hoạt động',
     ],
 
     // Experience
