@@ -117,7 +117,7 @@ export const translations = {
     university: 'Trường Đại học Sư phạm Kỹ thuật TP.HCM',
     degree: 'Cử nhân Công nghệ Thông tin',
     eduDescription: 'Chuyên ngành Kỹ thuật Phần mềm với trọng tâm về phát triển web và hệ thống phân tán.',
-    achievements: [
+    eduAchievements: [
         'Thành tựu & hoạt động',
     ],
 
