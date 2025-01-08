@@ -109,21 +109,21 @@ function About() {
   const certifications = [
     {
       name: t.reactCert,
-      issuer: "Meta",
+      issuer: "Meta", 
       date: "2023",
-      link: "#"
+      link: "https://www.coursera.org/account/accomplishments/verify/ABCD1234"
     },
     {
       name: t.fullstackCert,
       issuer: "FreeCodeCamp",
-      date: "2022",
-      link: "#"
+      date: "2022", 
+      link: "https://www.freecodecamp.org/certification/yourusername/full-stack"
     },
     {
       name: t.pythonCert,
-      issuer: "HackerRank",
-      date: "2022",
-      link: "#"
+      issuer: "Code Learn",
+      date: "2024",
+      link: "https://codelearn.io/share/edceb3df-0da1-41b6-9ec3-c7fd417725f1"
     }
   ];
 
