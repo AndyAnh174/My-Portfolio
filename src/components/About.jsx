@@ -9,15 +9,17 @@ import {
   FaMedal,
   FaTerminal,
   FaReact, 
-  FaNodeJs, 
+  FaNode, 
   FaJs,
   FaGit,
   FaDocker,
-  FaLinux
+  FaLinux,
+  FaSass
+  
 } from 'react-icons/fa';
-import { SiNeovim } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
 import { DiPostgresql } from "react-icons/di";
-import { SiMysql, SiTypescript, SiFlask, SiVim, SiMongodb } from "react-icons/si";
+import { SiMysql, SiTypescript, SiFlask, SiVim, SiMongodb, SiFastapi, SiNeovim, SiApache } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoFirebase } from "react-icons/io5";
 import { MdDesignServices } from 'react-icons/md';
@@ -38,10 +40,11 @@ function About() {
       title: t.skillTitles.frontend,
       technologies: [
         { name: "React.js", icon: FaReact, color: "#61DAFB" },
-        { name: "Next.js", icon: FaReact, color: "#61DAFB" },
+        { name: "Next.js", icon: TbBrandNextjs, color: "#000000" },
         { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
         { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
-        { name: "Tailwind CSS", icon: RiTailwindCssFill, color: "#38B2AC" }
+        { name: "Tailwind CSS", icon: RiTailwindCssFill, color: "#38B2AC" },
+        { name: "Sass", icon: FaSass, color: "#CC6699" }
       ]
     },
     {
@@ -50,9 +53,10 @@ function About() {
       color: "#3b82f6",
       title: t.skillTitles.backend,
       technologies: [
-        { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+        { name: "Node.js", icon: FaNode, color: "#339933" },
         { name: "Flask Python", icon: SiFlask, color: "#000000" },
         { name: "REST APIs", icon: FaGlobe, color: "#3b82f6" },
+        { name: "FastAPI", icon: SiFastapi, color: "#000000" },
         { name: "PostgreSQL", icon: DiPostgresql, color: "#336791" },
         { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
         { name: "MySQL", icon: SiMysql, color: "#4479A1" },
@@ -70,7 +74,7 @@ function About() {
         { name: "NeoVim", icon: SiNeovim, color: "#57A143" },
         { name: "Web Design", icon: MdDesignServices, color: "#FF7F50" },
         { name: "Linux", icon: FaLinux, color: "#FCC624" },
-        { name: "Web Services", icon: FaGlobe, color: "#3b82f6" }
+        { name: "Apache", icon: SiApache, color: "#D22128" }
       ]
     }
   ];
