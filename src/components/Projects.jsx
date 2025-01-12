@@ -9,7 +9,8 @@ import {
   FaArrowRight,
   FaServer,
   FaLinux,
-  FaGit
+  FaGit,
+  FaHtml5
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, 
@@ -18,7 +19,9 @@ import {
   SiMongodb,
   SiFlask,
   SiVim,
-  SiLua
+  SiLua,
+  SiLatex,
+  SiCss3
 } from 'react-icons/si';
 import { IoLogoFirebase } from 'react-icons/io5';
 import Merry from '../assets/merry.png';
@@ -26,6 +29,7 @@ import self from '../assets/self.jpg';
 import DSC from '../assets/DSC.jpg';
 import Tet from '../assets/pc.png';
 import { useLanguage, translations } from '../context/LanguageContext';
+import MergeMail from '../assets/merge-mail.jpg';
 
 function Projects() {
   const { language } = useLanguage();
@@ -60,7 +64,7 @@ const projects = [
         { name: "React", icon: FaReact, color: "#61DAFB" },
         { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
         { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-        { name: "Python", icon: FaPython, color: "#339933" },
+        { name: "Python", icon: FaPython, color: "#3776AB" },
         { name: "Flask", icon: SiFlask, color: "#339933" },
         { name: "NoSql", icon: SiMongodb, color: "#47A248" },
         { name: "Linux", icon: FaLinux, color: "#F05032" },
@@ -78,7 +82,7 @@ const projects = [
       technologies: [
         { name: "React", icon: FaReact, color: "#61DAFB" },
         { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
-        { name: "Python", icon: FaPython, color: "#339933" },
+        { name: "Python", icon: FaPython, color: "#3776AB" },
         { name: "Flask", icon: SiFlask, color: "#3178C6" },
         { name: "NoSql", icon: SiMongodb, color: "#47A248" },
         { name: "Linux", icon: FaLinux, color: "#F05032" },
@@ -126,6 +130,20 @@ const projects = [
         { name: "Git", icon: FaGit, color: "#F05032" }
       ],
       category: "Frontend"
+    },
+    {
+      title: "Merge Mail",
+      description: "A tool to merge multiple emails into a single email.",
+      image: MergeMail,
+      github: "https://github.com/AndyAnh174/Merge-Mail",
+      live: "https://github.com/AndyAnh174/Merge-Mail",
+      technologies: [
+        { name: "Python", icon: FaPython, color: "#3776AB" },
+        { name: "TeX", icon: SiLatex, color: "#3178C6" },
+        { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+        { name: "CSS", icon: SiCss3, color: "#1572B6" },
+      ],
+      category: "App/Tool"
     }
   ];
 
@@ -134,6 +152,7 @@ const projects = [
     { id: 'Frontend', label: t.categories.frontend },
     { id: 'Backend', label: t.categories.backend },
     { id: 'Fullstack', label: t.categories.fullstack },
+    { id: 'App/Tool', label: t.categories.appTool },
   ];
 
   const filteredProjects = filter === 'all' 

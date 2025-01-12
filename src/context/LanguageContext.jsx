@@ -112,7 +112,8 @@ export const translations = {
       all: 'All',
       frontend: 'Frontend',
       backend: 'Backend',
-      fullstack: 'Fullstack'
+      fullstack: 'Fullstack',
+      appTool: 'App/Tool'
     },
 
     // Contact
@@ -211,7 +212,8 @@ export const translations = {
       all: 'Tất Cả',
       frontend: 'Frontend',
       backend: 'Backend',
-      fullstack: 'Fullstack'
+      fullstack: 'Fullstack',
+      appTool: 'App/Tool'
     },
 
     // Contact
