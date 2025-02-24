@@ -12,4 +12,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    restart: always 
+      - COMPOSE_HTTP_TIMEOUT=200
+      - DOCKER_CLIENT_TIMEOUT=200
+    restart: always
+    command: npm run dev 
