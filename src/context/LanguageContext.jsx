@@ -44,6 +44,7 @@ export const translations = {
     fullName: 'Andy Anh',
     roles: {
       linux: 'Linux Expert',
+      devops: 'DevOps Engineer',
       frontend: 'Frontend Developer',
       opensource: 'Open Source Contributor'
     },
@@ -71,11 +72,11 @@ export const translations = {
     // Education
     university: 'Ho Chi Minh City University of Technology and Education',
     degree: 'Bachelor of Information Technology',
-    eduDescription: 'Software Engineering major with a focus on web development and distributed systems.',
+    eduDescription: 'Data Engineering major with a focus on web development and distributed systems.',
     gpa: 'GPA: 3.02/4.00',
     eduAchievements: [
-      'Member of HCMUTE - Developer Student Club',
-      'Member of HCMUTE - Cyber Security Club',
+      'Leader of HCMUTE - Developer Student Club',
+      'Leader of HCMUTE - Cyber Security Club',
       'Participated in various hackathons and coding competitions',
       'Contributed to open-source projects'
     ],
@@ -144,6 +145,7 @@ export const translations = {
     fullName: 'Andy Anh',
     roles: {
       linux: 'Chuyên Gia Linux',
+      devops: 'Kỹ Sư DevOps',
       frontend: 'Lập Trình Viên Frontend',
       opensource: 'Người Đóng Góp Mã Nguồn Mở'
     },
@@ -170,13 +172,13 @@ export const translations = {
 
     // Education
     university: 'Trường Đại học Sư phạm Kỹ thuật TP.HCM',
-    degree: 'Cử nhân Công nghệ Thông tin',
-    eduDescription: 'Chuyên ngành Kỹ thuật Phần mềm với trọng tâm về phát triển web và hệ thống phân tán.',
+    degree: 'Cử nhân Kỹ Thuật Dữ Liệu',
+    eduDescription: 'Chuyên ngành Kỹ thuật Dữ Liệu với trọng tâm về phát triển web và hệ thống phân tán.',
     gpa: 'GPA: 3.02/4.00',
     eduAchievements: [
-      'Thành viên CLB HCMUTE - Developer Student Club',
+      'Trưởng CLB HCMUTE - Developer Student Club',
       'Thành viên CLB HCMUTE - Cyber Security Club',
-      'Tham gia nhiều cuộc thi hackathon và lập trình',
+      'Tham gia nhiều cuộc thi MIT, hackathon và lập trình',
       'Đóng góp cho các dự án mã nguồn mở'
     ],
 

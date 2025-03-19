@@ -56,10 +56,9 @@ function About() {
         { name: "Node.js", icon: FaNode, color: "#339933" },
         { name: "Flask Python", icon: SiFlask, color: "#000000" },
         { name: "REST APIs", icon: FaGlobe, color: "#3b82f6" },
-        { name: "FastAPI", icon: SiFastapi, color: "#000000" },
+        { name: "FastAPI", icon: SiFastapi, color: "#47A248" },
         { name: "PostgreSQL", icon: DiPostgresql, color: "#336791" },
         { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
-        { name: "MySQL", icon: SiMysql, color: "#4479A1" },
         { name: "Firebase", icon: IoLogoFirebase, color: "#FFCA28" }
       ]
     },

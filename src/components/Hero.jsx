@@ -48,6 +48,8 @@ function Hero() {
               sequence={[
                 t.roles.linux,
                 2000,
+                t.roles.devops,
+                2000,
                 t.roles.frontend,
                 2000,
                 t.roles.opensource,

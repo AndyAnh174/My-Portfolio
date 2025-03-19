@@ -60,7 +60,7 @@ function Projects() {
         description: "The official website of HCMUTE-DSC Club, built to manage members, share information about club events and activities, and serve as a platform where members can interact and learn from each other. Developed with React and Tailwind CSS featuring a modern interface with seamless user experience.",
         image: DSC,
         github: "https://github.com/AndyAnh174/HCMUTE-DSC",
-        live: "https://hcmute-dsc.vercel.app/",
+        live: "https://dsc.fit.hcmute.edu.vn/",
         technologies: [
           { name: "React", icon: FaReact, color: "#61DAFB" },
           { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
@@ -243,7 +243,7 @@ function Projects() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#4ade80] to-[#3b82f6] hover:opacity-90 transition-opacity"
                 >
-                  <span>Live Demo</span>
+                  <span>Live</span>
                   <FaArrowRight />
                 </a>
               </div>
