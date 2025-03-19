@@ -7,9 +7,37 @@ import { useLanguage, translations } from '../context/LanguageContext';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 
 function Hero() {
-  const { language } = useLanguage();
-  const t = translations[language];
-  const scrollToSection = useScrollToSection();
+  let language = 'en';
+  let t = translations['en'];
+
+  try {
+    const languageContext = useLanguage();
+    if (languageContext) {
+      language = languageContext.language;
+      t = translations[language];
+    }
+  } catch (error) {
+    console.error('Lỗi khi sử dụng language context trong Hero:', error);
+  }
+
+  let scrollToSection = (id) => {
+    console.warn('ScrollToSection fallback được sử dụng trong Hero');
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else if (window.location.pathname !== '/') {
+      window.location.href = '/#' + id;
+    }
+  };
+
+  try {
+    const scrollFn = useScrollToSection();
+    if (typeof scrollFn === 'function') {
+      scrollToSection = scrollFn;
+    }
+  } catch (error) {
+    console.error('Lỗi khi sử dụng scrollToSection trong Hero:', error);
+  }
 
   const socialLinks = [
     { icon: FaGithub, url: "https://github.com/AndyAnh174", color: "hover:text-[#4ade80]" },
