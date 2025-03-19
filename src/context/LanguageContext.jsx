@@ -2,6 +2,12 @@ import React, { createContext, useState, useContext } from 'react';
 
 const LanguageContext = createContext();
 
+// Tạo đối tượng mặc định để sử dụng khi context không khả dụng
+const defaultLanguageContext = {
+  language: 'en',
+  toggleLanguage: () => console.warn('LanguageContext không khả dụng')
+};
+
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en'); // 'en' hoặc 'vi'
 
@@ -17,11 +23,17 @@ export const LanguageProvider = ({ children }) => {
 };
 
 export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+  try {
+    const context = useContext(LanguageContext);
+    if (!context) {
+      console.warn('useLanguage được gọi bên ngoài LanguageProvider, sử dụng giá trị mặc định');
+      return defaultLanguageContext;
+    }
+    return context;
+  } catch (error) {
+    console.error('Lỗi khi sử dụng LanguageContext:', error);
+    return defaultLanguageContext;
   }
-  return context;
 };
 
 // Translations

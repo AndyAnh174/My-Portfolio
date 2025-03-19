@@ -8,10 +8,44 @@ import { useScrollToSection } from '../hooks/useScrollToSection';
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const { language, toggleLanguage } = useLanguage();
-    const t = translations[language];
+    
+    // Thêm kiểm tra lỗi cho useLanguage
+    let language = 'en';
+    let toggleLanguage = () => {};
+    let t = translations['en'];
+    
+    try {
+        const languageContext = useLanguage();
+        if (languageContext) {
+            language = languageContext.language;
+            toggleLanguage = languageContext.toggleLanguage;
+            t = translations[language];
+        }
+    } catch (error) {
+        console.error('Lỗi khi sử dụng language context:', error);
+    }
+    
     const location = useLocation();
-    const scrollToSection = useScrollToSection();
+    
+    // Thêm kiểm tra lỗi cho useScrollToSection
+    let scrollToSection = (id) => {
+        console.warn('ScrollToSection fallback được sử dụng');
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        } else if (window.location.pathname !== '/') {
+            window.location.href = '/#' + id;
+        }
+    };
+    
+    try {
+        const scrollFn = useScrollToSection();
+        if (typeof scrollFn === 'function') {
+            scrollToSection = scrollFn;
+        }
+    } catch (error) {
+        console.error('Lỗi khi sử dụng scrollToSection:', error);
+    }
 
     useEffect(() => {
         const handleScroll = () => {

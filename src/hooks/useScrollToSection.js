@@ -1,7 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 
 export const useScrollToSection = () => {
-    const navigate = useNavigate();
+    // Thêm kiểm tra để tránh lỗi khi useNavigate trả về null
+    let navigate;
+    try {
+        navigate = useNavigate();
+    } catch (error) {
+        // Fallback function nếu không thể sử dụng useNavigate
+        navigate = (path, options) => {
+            console.warn('Navigation không khả dụng, đang chuyển hướng bằng window.location');
+            if (path === '/') {
+                window.location.href = `/${options?.state?.scrollTo ? '#' + options.state.scrollTo : ''}`;
+            } else {
+                window.location.href = path;
+            }
+        };
+    }
 
     const scrollToSection = (sectionId) => {
         // Kiểm tra xem có đang ở trang chủ không
